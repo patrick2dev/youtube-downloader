@@ -6,6 +6,7 @@ name = "pypi"
 [packages]
 flask = "*"
 frozen-flask = "*"
+pytube = "*"
 
 [dev-packages]
 
