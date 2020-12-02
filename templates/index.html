@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <form action="" onsubmit="return false">
+        <label>url:</label>
+        <input type="text" name="url" id="url">
+        <button onclick="youtubeSend()">gönder</button>
+    </form>
+    <div class="loader">
+        loading...
+    </div>
+    <ul id="details">
+        <div class="body">
+            <img src="" id="thumbnail" alt="">
+            <div>
+                <li id="title"></li><hr>
+                <li id="views"></li><hr>
+                <li id="author"></li><hr>
+                <li id="download"></li>
+            </div>
+        </div>
+    </ul>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    function youtubeSend() {
+        $('.loader').show();
+        $.get('api/youtube', { url: $('#url').val() }, (result) => {
+            $('.loader').hide();
+            $('#details').show()
+            $('#title').text(result.title);
+            $('#views').text(result.views + " views");
+            $('#author').text(result.author);
+            $('#thumbnail').attr('src', result.thumbnail);
+            $('#download').html('<a href="'+result.source.download+'?title='+result.title+'">download '+result.source.resolution+'</a>')
+        }, "json");
+    }
+</script>
+</body>
+</html>
