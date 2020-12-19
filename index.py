@@ -1,22 +1,30 @@
 from flask import Flask, render_template, url_for, request
 from pytube import YouTube
+import pypugjs
 
 app = Flask(__name__)
+app.jinja_env.add_extension('pypugjs.ext.jinja.PyPugJSExtension')
 
 @app.route("/")
 def index():
-    return render_template('index.html') 
+    return render_template('index.pug')
 
 @app.route("/api/youtube")
 def api():
     yt = YouTube(request.args.get('url'))
-    return {
-        "title": yt.title,
-        "thumbnail": yt.thumbnail_url,
-        "author": yt.author,
-        "views": yt.views,
-        "source": {
-            "download": yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc().first().url,
-            "resolution": yt.streams.filter(progressive=True).order_by('resolution').desc().first().resolution
-        }
+    video = {
+        "details": {
+            "title": yt.title,
+            "thumbnail": yt.thumbnail_url,
+            "author": yt.author,
+            "views": yt.views,
+        },
+        "sources": []
     }
+    sources = yt.streams.filter(progressive="true")
+    for v in sources:
+        video['sources'].append({
+            "download": v.url,
+            "resolution": v.resolution
+        })
+    return video
