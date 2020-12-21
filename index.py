@@ -5,6 +5,18 @@ import pypugjs
 app = Flask(__name__)
 app.jinja_env.add_extension('pypugjs.ext.jinja.PyPugJSExtension')
 
+# i taken from stackoverflow
+def intWithCommas(x):
+    if type(x) not in [type(0), type(0)]:
+        raise TypeError("please int, please.")
+    if x < 0:
+        return '-' + intWithCommas(-x)
+    result = ''
+    while x >= 1000:
+        x, r = divmod(x, 1000)
+        result = ".%03d%s" % (r, result)
+    return "%d%s" % (x, result)
+
 @app.route("/")
 def index():
     return render_template('index.pug')
@@ -17,7 +29,7 @@ def api():
             "title": yt.title,
             "thumbnail": yt.thumbnail_url,
             "author": yt.author,
-            "views": yt.views,
+            "views": intWithCommas(yt.views),
         },
         "sources": []
     }
