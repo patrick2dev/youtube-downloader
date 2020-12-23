@@ -1,15 +1,18 @@
 simple youtube video downloader.
 
+`pip install` alternative `python3 -m pip install ....` | `pip3 install ...`
+
 how do i start? -python-
   - download the project.
     ![download](https://i.imgur.com/MS2AbSn.png "download the project")
-  - install flask. `pip install flask || python -m pip install flask || python3 -m pip install flask`
+  - install flask. `pip install flask`
+  - install requirements `pip install -r requirements.txt`
   - open project directory and terminal (cmd etc.)
   - lets introduce our python file to the flask.
-    -- windows
+    - windows
              CMD:  `set FLASK_APP=index.py`
       PowerShell:  `$env:FLASK_APP = "index.py"`
-    -- macos, linux
+    - macos, linux
       Terminal: `export FLASK_APP=index.py`
   - START THE FLASK PROJECT!
     `flask run`
