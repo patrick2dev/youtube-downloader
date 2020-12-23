@@ -5,7 +5,6 @@ simple youtube video downloader.
 how do i start? -python-
   - download the project.
     ![download](https://i.imgur.com/MS2AbSn.png "download the project")
-  - install flask. `pip install flask`
   - install requirements `pip install -r requirements.txt`
   - open project directory and terminal (cmd etc.)
   - lets introduce our python file to the flask.
