@@ -1,0 +1,2 @@
+pypugjs==5.9.8
+pytube==10.0.0
