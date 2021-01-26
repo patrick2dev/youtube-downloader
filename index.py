@@ -5,7 +5,6 @@ import pypugjs
 app = Flask(__name__)
 app.jinja_env.add_extension('pypugjs.ext.jinja.PyPugJSExtension')
 
-# i taken from stackoverflow
 def intWithCommas(x):
     if type(x) not in [type(0), type(0)]:
         raise TypeError("please int, please.")
