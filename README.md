@@ -16,7 +16,7 @@ how do i start? -python-
   - START THE FLASK PROJECT!
     `flask run`
     alternatively `python -m flask run`
-  - and open your browser
+  - open your browser and go to
     `127.0.0.1:5000`
     
 ![mainpage_1](https://i.imgur.com/N84zfkW.png)
